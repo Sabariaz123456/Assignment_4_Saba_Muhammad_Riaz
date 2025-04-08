@@ -1,0 +1,85 @@
+import streamlit as st
+import random
+
+# Custom Styling
+page_bg_img = """
+<style>
+[data-testid="stAppViewContainer"] {
+    background-image: url("https://source.unsplash.com/1600x900/?colorful,fun,abstract");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+[data-testid="stHeader"] { background: rgba(0,0,0,0); }
+.stTextInput>div>div>input {
+    border-radius: 10px;
+    border: 2px solid #FF6F61;
+    padding: 10px;
+}
+.stButton>button {
+    background-color: #FF6F61;
+    color: white;
+    font-size: 18px;
+    border-radius: 10px;
+    padding: 10px 20px;
+    transition: 0.3s;
+}
+.stButton>button:hover { background-color: #FF3B30; }
+.stMarkdown { font-size: 18px; color: #333; }
+h1, h3 {
+    color: #FF3B30 !important;
+}
+p {
+    color: #FFFFFF !important;
+}
+</style>
+"""
+st.markdown(page_bg_img, unsafe_allow_html=True)
+
+# App Title & Description
+st.markdown("<h1 style='text-align: center;'>🎭 Fun Mad Libs Game! 🤪</h1>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; font-size: 18px;'>Fill in the blanks and create a hilarious story! 🎉</p>", unsafe_allow_html=True)
+
+# Game Introduction and Instructions
+st.markdown("<h3>🎮 How to Play:</h3>", unsafe_allow_html=True)
+st.markdown("""
+1. Enter the words as prompted – **your name**, **a place**, **an animal**, **a food**, **an action (verb)**, and **an adjective**.  
+2. Click on **"🎲 Generate My Story!"** to see your custom funny story.  
+3. Laugh out loud and share your story with friends! 😂🎉  
+Every time you play, a new wacky story awaits you!
+""", unsafe_allow_html=True)
+
+# User Input Fields
+st.markdown("<h3>🔤 Enter Your Words:</h3>", unsafe_allow_html=True)
+name = st.text_input("🧑 Your Name:")
+place = st.text_input("🌍 A Place:")
+animal = st.text_input("🐾 An Animal:")
+food = st.text_input("🍕 A Food Item:")
+verb = st.text_input("🏃 An Action (Verb):")
+adjective = st.text_input("🎨 A Describing Word:")
+
+# Story Templates
+stories = [
+    f"📖 One day, {name} went to {place}. There, they saw a {adjective} {animal} {verb} happily. "
+    f"Curious, {name} asked, 'Do you like {food}?' 🤔 The {animal} smiled and said, 'Yes! I love {food}! 😋' "
+    f"And that's how {name} made a new friend! 🎉",
+
+    f"🚶 {name} was walking through {place} when suddenly a {adjective} {animal} appeared! 🐾 "
+    f"It started {verb} towards {name}. 😱 Shocked, {name} threw some {food} at it. "
+    f"The {animal} loved it and started dancing! 💃 What a crazy day! 🤯",
+
+    f"🏰 In a magical land called {place}, a {adjective} {animal} loved {food}. 🍕 "
+    f"One day, {name} visited and saw the {animal} {verb} joyfully. 🥳 "
+    f"They became best friends forever! ❤️"
+]
+
+# Generate Story Button
+st.markdown("<br>", unsafe_allow_html=True)
+if st.button("🎲 Generate My Story! 🎭"):
+    story = random.choice(stories)
+    st.markdown("<h3>📜 Your Funny Story:</h3>", unsafe_allow_html=True)
+    st.write(story)
+
+# Footer
+st.markdown("<br><p style='text-align: center; font-size: 14px;'>✨ Created with Saba Muhammad Riaz❤️ using Python & Streamlit ✨</p>", unsafe_allow_html=True)
+
